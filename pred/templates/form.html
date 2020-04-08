@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load pred_extras %}
+
+{% block content %}
+    <div class="row">
+
+        <!-- left portion -->
+        <div class="col-6">
+            {% for dict in info %}
+                {% for key, value in dict.items %}
+                    {% if key == "topic" or key == "domain" %}    
+                        <h1>{{key.upper}}:</h1> <h3>{{value}}</h3> <br><br>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+
+        <!-- metric portion -->
+        <div class="col-6">
+           <h1>Metrics</h1>
+
+           <!--     criteria.0.0 ====> Email_of_Editor
+                    info.0 ==========> {'':''}
+            -->
+            {% for criteria in metric_list%}
+                {% with option_name=criteria.0.0 %}
+                {% for option in criteria %}
+                    {% if forloop.first %}
+                        <b>{{option.0}}</b> <br>
+                    {% else %}
+                        {% for k,v in m.items %}
+                            {% if k == option_name%}
+                                {% if v == option.0 %}
+                                    <input type="radio" checked> {{option.1}}<br>
+                                {% else %}
+                                    <input type="radio" disabled> {{option.1}}<br>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %} <br><br>
+                {% endwith %}
+            {% endfor %}
+
+            <button class="btn btn-primary">Score: {{score}}</button>                
+        </div>
+    </div>
+{% endblock %}
+
