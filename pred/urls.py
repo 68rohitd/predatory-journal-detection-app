@@ -6,4 +6,4 @@ from .views import (post)
 urlpatterns = [
      url(r'^$', searchposts, name='searchposts'),
      url(r'form', post, name='post'),
-]
+] 
