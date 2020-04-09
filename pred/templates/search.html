@@ -12,9 +12,9 @@
                 <h1>Results for <b>{{ request.GET.q }}</b></h1>
                 <br/><br/>
                 {% for result in results %}
-                    {{result.publisher}}
+                    {{result.Name_of_journal}}
                     <br/>
-                    <a href="form?query_name={{ result.journal|urlencode }}">{{result.journal}}</a>
+                    <a href="form?query_name={{ result.Links|urlencode }}">{{result.Links}}</a>
                     <br/>
                 {% endfor %}
                 {% else %}

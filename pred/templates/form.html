@@ -42,8 +42,20 @@
                 {% endwith %}
             {% endfor %}
 
-            <button class="btn btn-primary">Score: {{score}}</button>                
+            <button class="btn btn-primary">Score: {{score}}</button>  
+            {% if is_it_predatory == True %}
+                <h1>Result: It's a Predatory Journal</h1>
+            {% else %}
+                <h1>Result: It's not a Predatory Journal</h1>
+            {% endif %}
+       
+
+            <!-- <h1>new metric list</h1> <br>
+            {% for k,v in m.items %}
+                <b>{{k}}</b> : {{v}} <br>   
+            {% endfor %} -->
         </div>
+        
     </div>
 {% endblock %}
 
