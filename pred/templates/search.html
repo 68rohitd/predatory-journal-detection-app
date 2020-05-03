@@ -1,26 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container">
-        <h1>Search Journal</h1>
-        <br/>
-        <form action="{% url 'search:searchposts' %}" method="GET" value="{{request.GET.q}}">
-        Search <input type="text" name="q" value="{{request.GET.q}}" placeholder="Search Journals"/>
-        <input type="submit" name="submit" value="Search"/>
-        </form>
-        {% if submitbutton == 'Search' and request.GET.q != '' %}
-            {% if results %}
-                <h1>Results for <b>{{ request.GET.q }}</b></h1>
-                <br/><br/>
-                {% for result in results %}
-                    {{result.Name_of_journal}}
-                    <br/>
-                    <a href="form?query_name={{ result.Links|urlencode }}">{{result.Links}}</a>
-                    <br/>
-                {% endfor %}
-                {% else %}
-                    No search results for this query
-            {% endif %}
-        {% endif %}
-    </div>
+<div class="container">
+	<h1>Search Journal</h1>
+	<br />
+	<form action="{% url 'search:searchposts' %}" method="GET" value="{{request.GET.q}}">
+		Search <input type="text" name="q" value="{{request.GET.q}}" placeholder="Search Journals" />
+		<input type="submit" name="submit" value="Search" />
+	</form>
+	{% if submitbutton == 'Search' and request.GET.q != '' %}
+	{% if results %}
+	<h1>Results for <b>{{ request.GET.q }}</b></h1>
+	<br /><br />
+	{% for result in results %}
+	{{result.journal_name}}
+	<br />
+	<a href="form?query_name={{ result.journal_name|urlencode }}">{{result.journal_link}}</a>
+	<br />
+	{% endfor %}
+	{% else %}
+	No search results for this query
+	{% endif %}
+	{% endif %}
+</div>
 {% endblock %}
-

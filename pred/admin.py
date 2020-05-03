@@ -1,16 +1,26 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 from . import *
-from .models import Journaltable, Journaltable2
-
-class ViewAdmin(ImportExportModelAdmin):
-    exclude = ('id')
+from .models import Journal, Parameter, Options, JournalDatabase
 
 
-@admin.register(Journaltable)
-class Journal(ImportExportModelAdmin):
-    pass
+class JournalA(admin.ModelAdmin):
+    list_display = ('journal_name', 'journal_link')
 
-@admin.register(Journaltable2)
-class Journal2(ImportExportModelAdmin):
-    pass
+
+class ParameterA(admin.ModelAdmin):
+    list_display = ('parameter_name',)
+
+
+class OptionsA(admin.ModelAdmin):
+    list_display = ('option_name', 'score', 'parameter')
+
+
+class JournalDatabaseA(admin.ModelAdmin):
+    list_display = ('journal', 'parameter', 'chosen_option')
+
+
+admin.site.register(Journal, JournalA)
+admin.site.register(Parameter, ParameterA)
+admin.site.register(Options, OptionsA)
+admin.site.register(JournalDatabase, JournalDatabaseA)
