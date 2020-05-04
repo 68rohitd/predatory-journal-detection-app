@@ -31,9 +31,11 @@ def post(request):
     score = []
     print("Journal: ", query)
     for i in results:
-        score.append(i.chosen_option.score)
+        if i.parameter.parameter_name == 'PREDATORY (1) / NON PREDATORY (0):':
+            pass
+        else:
+            score.append(i.chosen_option.score)
 
-    score = score[:-1]
     print("Score list: ", score, "length: ", len(score))
 
     loadedModel = joblib.load(
