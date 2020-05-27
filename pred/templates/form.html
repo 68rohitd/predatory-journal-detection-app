@@ -1,23 +1,35 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
-<div class="row">
-    <div class="col-3">
-        <h1>Journal Name</h1><br />
-        {{jd.0.journal}} <br />
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <h1 class="display-4">Journal Name</h1>
+      <br />
+      {{jd.0.journal}} <br />
     </div>
 
-    <div class="col-9">
-        <h1>Parameters</h1><br />
-        {% for res in jd %}
-        <ul>
-            <li> <b class="btn btn-success">{{res.parameter.parameter_name}} </b>
-                <span class="btn btn-secondary"> {{res.chosen_option.option_name}}</span>
-            </li>
-        </ul>
-        {% endfor %}
+    <div class="col-7">
+      <h1 class="display-4">Parameters</h1>
+      <br />
+      {% for res in jd %}
+      <ul class="list-group">
+        <li class="list-group-item mb-2">
+          <b class="">{{res.parameter.parameter_name}} </b> <br />
+          <span class=""> {{res.chosen_option.option_name}}</span>
+        </li>
+      </ul>
+      {% endfor %}
 
-        <span class="btn btn-primary">{{predicted}}</span>
+      <div class="card">
+        {% if predicted == "It's not a Predatory journal!" %}
+        <div class="card-body bg-primary text-white font-weight-bold rounded">
+          {% else %}
+          <div class="card-body bg-danger text-white font-weight-bold rounded">
+            {% endif %} Result: {{predicted}}
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  {% endblock %}
 </div>
-{% endblock %}
